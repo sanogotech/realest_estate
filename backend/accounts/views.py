@@ -15,7 +15,7 @@ class SignUpView(APIView):
         password = data['password']
         password2 = data['password2']
         if password == password2:
-            if User.objects.filter(email='email').exists():
+            if User.objects.filter(email=email).exists():
                 return Response({'error': "Email already exists"})
             else:
                 if len(password) < 6:

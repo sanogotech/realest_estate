@@ -41,7 +41,10 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
-    'accounts'
+    'accounts',
+    'realtors',
+    'listings',
+    'contacts'
 ]
 
 MIDDLEWARE = [
@@ -88,6 +91,13 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'officialnotelle@gmail.com'
+EMAIL_HOST_PASSWORD = 'mpyaagiusxarwbft'
+EMAIL_USE_TLS = True
 
 
 # Password validation
@@ -140,7 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.isAuthenticated'
+        'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication'
