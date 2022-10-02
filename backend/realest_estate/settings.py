@@ -134,8 +134,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIR = [
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -159,7 +159,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 3
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
 FILE_UPLOAD_PERMISSIONS = 0o640
 AUTH_USER_MODEL = 'accounts.UserAccount'

@@ -4,8 +4,8 @@ import { useGlobalContext } from "../context";
 
 type Props = {};
 
-const LoginPage: React.FC = (props: Props) => {
-  const { login, state } = useGlobalContext();
+const RegisterPage: React.FC = (props: Props) => {
+  const { register, state } = useGlobalContext();
   const { is_authenticated } = state;
   if (is_authenticated) {
     return <Redirect to="/" />;
@@ -14,13 +14,26 @@ const LoginPage: React.FC = (props: Props) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    login(formData.get("email") as string, formData.get("password") as string);
+    register(
+      formData.get("name") as string,
+      formData.get("email") as string,
+      formData.get("password") as string,
+      formData.get("password2") as string
+    );
   };
 
   return (
     <>
       <div className="min-h-screen bg-gray-600 flex justify-center items-center">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            className="input"
+            placeholder="name"
+            type="text"
+            name="name"
+            id="name"
+            required
+          />
           <input
             className="input"
             placeholder="email"
@@ -37,8 +50,17 @@ const LoginPage: React.FC = (props: Props) => {
             className="input"
             id="password"
           />
+          <input
+            required
+            placeholder="confirm password"
+            type="password"
+            name="password2"
+            className="input"
+            id="password2"
+          />
+
           <button className="btn self-start" type="submit">
-            Log in
+            Register
           </button>
         </form>
       </div>
@@ -46,4 +68,4 @@ const LoginPage: React.FC = (props: Props) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

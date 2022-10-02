@@ -73,12 +73,15 @@ export const AppContextWrapper: React.FC<{ children: React.ReactNode }> = ({
     password,
     password2
   ) => {
+    if (password !== password2) {
+      return setAlert("error", "Passwords do not match!");
+    }
     const config = {
       headers: { "Content-Type": "application/json" },
     };
     const body = JSON.stringify({ name, email, password, password2 });
     try {
-      const response = await axios.post("/api/accounts/signup", body, config);
+      const response = await axios.post("/api/accounts/signup/", body, config);
 
       dispatch({ type: "SIGNUP_SUCCESS", payload: response.data });
       login(email, password);
