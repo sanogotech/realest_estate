@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
-interface Listing {
+export interface Listing {
   title: string;
   address: string;
   city: string;
@@ -17,22 +18,11 @@ interface Listing {
   slug: string;
 }
 
-const ListingCard: React.FC<{ listing: Listing }> = ({ listing }) => {
-  const {
-    title,
-    address,
-    city,
-    state,
-    price,
-    sale_type,
-    home_type,
-    bedrooms,
-    sqft,
-    photo_main,
-    slug,
-  } = listing;
+export const ListingCard: React.FC<{ listing: Listing }> = ({ listing }) => {
+  const { title, address, city, state, price, sale_type, photo_main, slug } =
+    listing;
   return (
-    <div className="bg-slate-900 p-8 text-white flex flex-col">
+    <div className="bg-slate-900 p-8 gap-3 text-white flex flex-col">
       <h1>{title}</h1>
       <img src={photo_main} alt={slug} />
       <p>
@@ -40,9 +30,9 @@ const ListingCard: React.FC<{ listing: Listing }> = ({ listing }) => {
       </p>
       <p>${price}</p>
       <p>{sale_type}</p>
-      <p>{home_type}</p>
-      <p>{bedrooms} bedrooms</p>
-      <p>{sqft}</p>
+      <Link className="btn bg-emerald-600 self-start" to={slug}>
+        View details
+      </Link>
     </div>
   );
 };
@@ -67,7 +57,7 @@ const HomePage: React.FC = (props: Props) => {
     <>
       <div className="grid grid-cols-3 gap-6 p-8">
         {listings.map((listing) => (
-          <ListingCard listing={listing} />
+          <ListingCard key={listing.slug} listing={listing} />
         ))}
       </div>
     </>

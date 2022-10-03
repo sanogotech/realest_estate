@@ -26,12 +26,12 @@ function reducer(state: InitialStateInterface, action: ActionInterface) {
       state.is_authenticated = true;
       state.loading = false;
       state.token = payload.access;
-      break;
+      return;
 
     case "SIGNUP_SUCCESS":
       state.is_authenticated = false;
       state.loading = true;
-      break;
+      return;
 
     case "SIGNUP_FAIL":
     case "LOGIN_FAIL":
@@ -40,7 +40,7 @@ function reducer(state: InitialStateInterface, action: ActionInterface) {
       state.token = null;
       state.is_authenticated = false;
       state.loading = false;
-      break;
+      return;
 
     default:
       return state;

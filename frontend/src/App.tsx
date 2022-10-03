@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
+import DetailsPage from "./pages/DetailsPage";
 
 interface Props {}
 
@@ -17,6 +18,7 @@ const App: React.FC<Props> = () => {
         <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/register" exact component={RegisterPage} />
+        <Route path="/:slug" exact component={DetailsPage} />
       </Switch>
 
       <ToastContainer
